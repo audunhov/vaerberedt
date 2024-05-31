@@ -1,0 +1,57 @@
+package views
+
+import (
+	"audunhov/vaerberedt/cmd/list"
+	"audunhov/vaerberedt/cmd/forecast"
+)
+
+templ index(title string) {
+	<!DOCTYPE html>
+	<html lang="ko">
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+			<meta name="description" content=""/>
+			<meta name="author" content=""/>
+			<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+			<title>{ title } - VærBeredt</title>
+			<link href="css/style.css" rel="stylesheet"/>
+			<script src="https://unpkg.com/htmx.org@1.9.12"></script>
+		</head>
+		<body>
+			{ children... }
+		</body>
+	</html>
+}
+
+templ Test(forecast forecast.CompactResponse) {
+	<div>
+		Updated at: { forecast.Properties.Meta.UpdatedAt.String() }
+	</div>
+}
+
+templ Create() {
+	<form hx-post="/create" hx-target="#lists" hx-swap="beforeend">
+		<fieldset>
+			<legend>Lag pakkeliste</legend>
+			<label for="name">Navn</label>
+			<input type="text" name="name"/>
+			<label for="location">Sted</label>
+			<input type="text" location="name"/>
+			<button type="submit">Legg til</button>
+		</fieldset>
+	</form>
+}
+
+templ List(list list.PackingList) {
+	<li>
+		<h2>{ list.Name }</h2>
+	</li>
+}
+
+templ HomePage() {
+	@index("home") {
+		<h1>Vær Beredt!</h1>
+		@Create()
+		<ul id="lists"></ul>
+	}
+}
