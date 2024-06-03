@@ -1,0 +1,12 @@
+<div>Updated at: 
+</div>
+<form hx-post=\"/create\" hx-target=\"#lists\" hx-swap=\"beforeend\"><fieldset><legend>Lag pakkeliste</legend> <label for=\"name\">Navn</label> <input type=\"text\" name=\"name\"> <label for=\"location\">Sted</label> <input type=\"text\" location=\"name\"> <button type=\"submit\">Legg til</button></fieldset></form>
+<li><h2>
+</h2></li>
+<li id=\"
+\">Item 
+ -  <button hx-target=\"closest li\" hx-swap=\"outerHTML\" hx-get=\"
+\">Edit</button></li>
+<li id=\"
+\"><form hx-post=\"
+\"><fieldset><label for=\"name\">Navn</label> <input type=\"text\" name=\"name\"> <label for=\"location\">Sted</label> <input type=\"text\" location=\"name\"> <button type=\"submit\">Legg til</button></fieldset></form></li>

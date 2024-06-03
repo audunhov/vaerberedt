@@ -1,0 +1,48 @@
+package views
+
+templ Page(title string) {
+	<!DOCTYPE html>
+	<html lang="ko">
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+			<meta name="description" content=""/>
+			<meta name="author" content=""/>
+			<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+			<title>{ title } - VærBeredt</title>
+			<link href="css/style.css" rel="stylesheet"/>
+			<script src="https://unpkg.com/htmx.org@1.9.12"></script>
+		</head>
+		<body>
+			{ children... }
+		</body>
+	</html>
+}
+
+templ HomePage() {
+	@Page("Hjem") {
+		<h1>Vær Beredt!</h1>
+		<h2>Dine lister:</h2>
+		<ul id="lists"></ul>
+		<div hx-boost="true">
+			<h3>Lenker:</h3>
+			<a href="/new">Lag ny liste</a>
+			<a href="/items">Rediger gjenstander</a>
+		</div>
+	}
+}
+
+templ CreatePage() {
+	@Page("Ny liste") {
+		<h1>Ny liste</h1>
+		@Create()
+	}
+}
+
+templ ItemsPage() {
+	@Page("Gjenstander") {
+		<h1>Gjenstander</h1>
+		<ul id="items">
+			@Item("1")
+		</ul>
+	}
+}
